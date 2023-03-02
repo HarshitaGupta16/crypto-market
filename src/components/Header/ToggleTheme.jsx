@@ -1,30 +1,42 @@
 import { IconButton, Tooltip } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { ThemeState } from "../../contexts/ThemeContext";
 
 const ToggleTheme = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-
-    useEffect(() => {
-        isDarkTheme ? document.body.className = "dark-theme" : document.body.className = "light-theme"
-        console.log("theem", document.body.className)
-    }, [isDarkTheme])
+  const {theme, setTheme} = ThemeState()
 
   return (
-    <>
-      {isDarkTheme ? (
-        <Tooltip title="Switch to light mode ">
-        <IconButton onClick={() => setIsDarkTheme(false)} aria-label="Switch to light mode">
-          <LightModeIcon />
-        </IconButton>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+      }}
+    >
+      {theme === "dark-theme" ? (
+        <Tooltip title="Switch to light mode">
+          <IconButton
+            onClick={() => setTheme("light-theme")}
+            aria-label="Switch to light mode"
+            style={{ height: 30, width: "30px", marginRight: 20, top: "-60px" }}
+          >
+            <LightModeIcon />
+          </IconButton>
         </Tooltip>
       ) : (
-        <IconButton onClick={() => setIsDarkTheme(true)} aria-label="Switch to dark mode">
-          <DarkModeIcon />
-        </IconButton>
+        <Tooltip title="Switch to dark mode">
+          <IconButton
+            onClick={() => setTheme("dark-theme")}
+            aria-label="Switch to dark mode"
+            style={{ height: 30, width: "30px", marginRight: 20, top: "-60px" }}
+          >
+            <DarkModeIcon />
+          </IconButton>
+        </Tooltip>
       )}
-    </>
+    </div>
   );
 };
 
