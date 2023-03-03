@@ -1,0 +1,9 @@
+.banner {
+    height: 250px;
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-repeat: repeat-x;
+}

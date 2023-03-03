@@ -1,3 +1,8 @@
+.dark-theme-icon 
 .MuiSelect-icon{
     color: turquoise !important;
+}
+
+.light-theme-icon .MuiSelect-icon {
+    color: #1a237e !important;
 }

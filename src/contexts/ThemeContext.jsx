@@ -20,5 +20,5 @@ const ThemeContext = ({ children }) => {
 export default ThemeContext;
 
 export const ThemeState = () => {
-    return useContext(themeContext)
-}
+  return useContext(themeContext);
+};

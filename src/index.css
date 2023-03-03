@@ -20,9 +20,9 @@
 }
 
 .light-theme {
-  --main-heading: turquoise;
+  --main-heading: #1a237e;
   --para-clr: #242424;
-  --btn-bg-color: turquoise;
+  --btn-bg-color: #1a237e;
   --btn-text-color: rgba(255, 255, 255, 0.87);
   --bg-clr: rgba(255, 255, 255, 0.87);
 }
@@ -31,7 +31,7 @@ body{
   background-color: var(--bg-clr);
 }
 
-h1{
+h1, h6{
   color: var(--main-heading);
 }
 
@@ -48,8 +48,3 @@ button:hover {
   border: 1px solid;
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-

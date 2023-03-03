@@ -5,22 +5,16 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { ThemeState } from "../../contexts/ThemeContext";
 
 const ToggleTheme = () => {
-  const {theme, setTheme} = ThemeState()
+  const { theme, setTheme } = ThemeState();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-      }}
-    >
+    <>
       {theme === "dark-theme" ? (
         <Tooltip title="Switch to light mode">
           <IconButton
             onClick={() => setTheme("light-theme")}
             aria-label="Switch to light mode"
-            style={{ height: 30, width: "30px", marginRight: 20, top: "-60px" }}
+            style={{ height: 30, width: "30px" }}
           >
             <LightModeIcon />
           </IconButton>
@@ -30,13 +24,13 @@ const ToggleTheme = () => {
           <IconButton
             onClick={() => setTheme("dark-theme")}
             aria-label="Switch to dark mode"
-            style={{ height: 30, width: "30px", marginRight: 20, top: "-60px" }}
+            style={{ height: 30, width: "30px" }}
           >
             <DarkModeIcon />
           </IconButton>
         </Tooltip>
       )}
-    </div>
+    </>
   );
 };
 

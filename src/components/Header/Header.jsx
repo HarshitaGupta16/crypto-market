@@ -1,14 +1,17 @@
-import { AppBar, Container, MenuItem, Select } from "@mui/material";
+import { AppBar, Container, MenuItem, Select, Toolbar, Typography } from "@mui/material";
 import React from "react";
 import ToggleTheme from "./ToggleTheme";
 import "./Header.css";
 import { CryptoState } from "../../contexts/CryptoContext";
+import { ThemeState } from "../../contexts/ThemeContext";
 
 const Header = () => {
   const { currency, setCurrency } = CryptoState();
+  const {theme} = ThemeState()
 
   return (
-    <AppBar color="transparent">
+    <AppBar color="transparent" position="static">
+      <Toolbar>
       <Container
         style={{
           display: "flex",
@@ -17,24 +20,29 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        <h1 className="--main-heading">Crypto Market</h1>
+        <Typography variant={'h6'} className="--main-heading">Crypto Market</Typography>
+        <div style={{display: 'flex', alignItems: 'center'}}>
         <Select
           style={{
             width: 100,
             height: 40,
             marginRight: 35,
-            border: "1px solid turquoise",
+            border: theme === 'dark-theme' ? "1px solid turquoise" : "1px solid #1a237e",
           }}
+          className={theme === 'dark-theme' ? 'dark-theme-icon' : 'light-theme-icon'}
           value={currency}
           onChange={(event) => setCurrency(event.target.value)}
-          sx={{ color: "turquoise" }}
+          sx={{ color: theme === 'dark-theme' ? "turquoise" : "#1a237e", fill: 'red' }}
+          InputProps={{color: 'red'}}
         >
           <MenuItem value="INR">INR</MenuItem>
           <MenuItem value="USD">USD</MenuItem>
         </Select>
-      </Container>
       <ToggleTheme />
-    </AppBar>
+      </div>
+      </Container>
+      </Toolbar>
+    </AppBar>    
   );
 };
 
