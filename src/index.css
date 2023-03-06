@@ -10,9 +10,9 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.dark-theme{
+.dark-theme {
   --main-heading: turquoise;
-  --para-clr: rgba(255, 255, 255, 0.87);;
+  --para-clr: rgba(255, 255, 255, 0.87);
   --btn-bg-color: turquoise;
   --btn-text-color: rgba(255, 255, 255, 0.87);
   --bg-clr: #242424;
@@ -27,15 +27,16 @@
   --bg-clr: rgba(255, 255, 255, 0.87);
 }
 
-body{
+body {
   background-color: var(--bg-clr);
 }
 
-h1, h6{
+h1,
+h6 {
   color: var(--main-heading);
 }
 
-p{
+p {
   color: var(--para-clr);
 }
 
@@ -47,4 +48,10 @@ button {
 button:hover {
   border: 1px solid;
   border-color: #646cff;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-heading);
+  cursor: pointer;
 }
