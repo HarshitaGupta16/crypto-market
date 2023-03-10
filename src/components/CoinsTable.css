@@ -1,0 +1,15 @@
+.darkThemeTextbox .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.lightThemeTextbox .MuiOutlinedInput-notchedOutline {
+  border-color: #1a237e !important;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: rgb(46, 44, 44);
+}
