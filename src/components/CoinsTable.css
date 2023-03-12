@@ -6,10 +6,64 @@
   border-color: #1a237e !important;
 }
 
-.row {
+.darkThemeRow {
   cursor: pointer;
 }
 
-.row:hover {
+.lightThemeRow {
+  cursor: pointer;
+}
+
+.darkThemeRow:hover {
   background-color: rgb(46, 44, 44);
+}
+
+.lightThemeRow:hover {
+  background-color: beige;
+}
+
+.darkTheme .MuiPaginationItem-root {
+  color: turquoise !important;
+  background-color: #242424 !important;
+}
+.darkTheme .MuiPaginationItem-root.Mui-selected {
+  background: turquoise !important;
+  color: #242424 !important;
+}
+.darkTheme .MuiPaginationItem-root.Mui-focusVisible {
+  outline: 1px solid turquoise;
+  outline-offset: 1px;
+  background: none !important;
+}
+.darkTheme .MuiPaginationItem-root:hover {
+  outline: 1px solid turquoise;
+  outline-offset: 1px;
+  background: none !important;
+}
+.darkTheme .MuiPaginationItem-root.Mui-selected:hover {
+  color: turquoise !important;
+  background-color: none !important;
+}
+
+.lightTheme .MuiPaginationItem-root {
+  color: #1a237e !important;
+  background-color: rgba(255, 255, 255, 0.87) !important;
+}
+.lightTheme .MuiPaginationItem-root.Mui-selected {
+  background: #1a237e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+.lightTheme .MuiPaginationItem-root.Mui-focusVisible {
+  outline: 1px solid #1a237e;
+  outline-offset: 1px;
+  background: none !important;
+}
+.lightTheme .MuiPaginationItem-root:hover {
+  outline: 1px solid #1a237e;
+  outline-offset: 1px;
+  background: none !important;
+}
+.lightTheme .MuiPaginationItem-root.Mui-selected:hover {
+  color: #1a237e !important;
+  background-color: none !important;
 }
