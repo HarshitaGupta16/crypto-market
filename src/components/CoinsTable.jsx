@@ -18,7 +18,7 @@ import { CryptoState } from "../contexts/CryptoContext";
 import { ThemeState } from "../contexts/ThemeContext";
 import "./CoinsTable.css";
 import { NumberWithCommas } from "./Banner/Carousel";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CoinsTable = () => {
   const { theme } = ThemeState();
@@ -207,7 +207,10 @@ const CoinsTable = () => {
           </Table>
         </TableContainer>
       )}
-      <Pagination count={10} onChange={handlePagination} />
+      <Pagination
+        count={handleSearch()?.length / 10}
+        onChange={handlePagination}
+      />
     </Container>
   );
 };
