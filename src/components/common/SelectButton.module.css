@@ -3,6 +3,7 @@
   background: none !important;
   border-color: turquoise !important;
   padding: 10px 40px !important;
+  text-transform: none !important;
 }
 
 .darkThemeBtn:hover {
@@ -14,6 +15,8 @@
   color: #242424 !important;
   background: none !important;
   border-color: #1a237e !important;
+  padding: 10px 40px !important;
+  text-transform: none !important;
 }
 
 .lightThemeBtn:hover {
@@ -27,6 +30,7 @@
   color: #242424 !important;
   font-weight: bold !important;
   padding: 10px 40px !important;
+  text-transform: none !important;
 }
 
 .selectedLightBtn {
@@ -34,4 +38,5 @@
   color: rgba(255, 255, 255, 0.87) !important;
   font-weight: bold !important;
   padding: 10px 40px !important;
+  text-transform: none !important;
 }

@@ -90,25 +90,25 @@ const CoinInfo = ({ coin }) => {
               },
             }}
           />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              marginTop: 20,
+              width: "100%",
+            }}
+          >
+            {ChartDays().map((button) => (
+              <SelectButton
+                onClick={() => setDays(button.days)}
+                selected={button.days === days}
+              >
+                {button.label}
+              </SelectButton>
+            ))}
+          </div>
         </>
       )}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: 20,
-          width: "100%",
-        }}
-      >
-        {ChartDays().map((button) => (
-          <SelectButton
-            onClick={() => setDays(button.days)}
-            selected={button.days === days}
-          >
-            {button.label}
-          </SelectButton>
-        ))}
-      </div>
     </div>
   );
 };
