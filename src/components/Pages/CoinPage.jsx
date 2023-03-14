@@ -31,7 +31,7 @@ const CoinPage = () => {
   }
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className={classes.container}>
       <div
         style={{
           color:
@@ -99,7 +99,7 @@ const CoinPage = () => {
           </span>
         </div>
       </div>
-      <CoinInfo />
+      <CoinInfo coin={coinDetail} />
     </div>
   );
 };
