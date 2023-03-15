@@ -25,14 +25,17 @@ const CoinsTable = () => {
   const [searchText, setSearchText] = useState("");
   const [coinsList, setCoinsList] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const { currency, symbol } = CryptoState();
 
   const navigate = useNavigate();
 
   const fetchCoinsList = async () => {
+    setLoading(true);
     const { data } = await axios.get(CoinsList(currency));
     setCoinsList(data);
+    setLoading(false);
   };
 
   const handleSearch = () => {
@@ -91,7 +94,7 @@ const CoinsTable = () => {
         }}
         onChange={(event) => setSearchText(event.target.value)}
       />
-      {coinsList.length === 0 ? (
+      {loading ? (
         <LinearProgress
           style={{
             backgroundColor: theme === "dark-theme" ? "turquoise" : "#1ae237",
