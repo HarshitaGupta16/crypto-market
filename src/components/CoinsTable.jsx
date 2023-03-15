@@ -52,6 +52,7 @@ const CoinsTable = () => {
 
   const handlePagination = (event, value) => {
     setPage(value);
+    window.scroll(0, 450);
   };
 
   return (
