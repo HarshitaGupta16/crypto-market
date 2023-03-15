@@ -23,20 +23,12 @@ import { useNavigate } from "react-router-dom";
 const CoinsTable = () => {
   const { theme } = ThemeState();
   const [searchText, setSearchText] = useState("");
-  const [coinsList, setCoinsList] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
 
-  const { currency, symbol } = CryptoState();
+  const { currency, symbol, coinsList, loading, fetchCoinsList } =
+    CryptoState();
 
   const navigate = useNavigate();
-
-  const fetchCoinsList = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinsList(currency));
-    setCoinsList(data);
-    setLoading(false);
-  };
 
   const handleSearch = () => {
     return coinsList.filter(
