@@ -1,7 +1,10 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import { CryptoState } from "../../contexts/CryptoContext";
 import { ThemeState } from "../../contexts/ThemeContext";
 import "./SignUp.css";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const textFieldStyle = {
   "& .MuiOutlinedInput-root": {
@@ -27,8 +30,37 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState();
 
   const { theme } = ThemeState();
+  const { alert, setAlert } = CryptoState();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async ({ handleClose }) => {
+    if (password !== confirmPassword) {
+      setAlert({
+        open: true,
+        message: "Passwords do not match",
+        type: "error",
+      });
+    }
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setAlert({
+        open: true,
+        message: `Sign Up Successful! Welcome ${result.user.email}`,
+        type: "success",
+      });
+      handleClose();
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: "Email is already in use",
+        type: "error",
+      });
+      return;
+    }
+  };
 
   return (
     <Box

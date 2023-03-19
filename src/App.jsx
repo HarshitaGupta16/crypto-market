@@ -1,3 +1,4 @@
+import Alert from "./components/Alert";
 import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/coins/:id" element={<CoinPage />} />
       </Routes>
+      <Alert />
     </div>
   );
 }

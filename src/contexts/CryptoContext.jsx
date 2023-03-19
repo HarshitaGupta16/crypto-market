@@ -10,6 +10,11 @@ const CryptoContext = ({ children }) => {
   const [coinsList, setCoinsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [alert, setAlert] = useState({
+    open: false,
+    message: "",
+    type: "success",
+  });
 
   useEffect(() => {
     if (currency === "INR") {
@@ -35,6 +40,8 @@ const CryptoContext = ({ children }) => {
         coinsList,
         loading,
         fetchCoinsList,
+        alert,
+        setAlert,
       }}
     >
       {children}
