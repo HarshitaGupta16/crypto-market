@@ -16,3 +16,9 @@
     padding-top: 0;
   }
 }
+
+.chartDaysBtn {
+  padding: 8px 45px !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+}

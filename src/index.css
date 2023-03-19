@@ -41,11 +41,6 @@ p {
   color: var(--para-clr);
 }
 
-button {
-  color: var(--btn-text-color) !important;
-  background-color: var(--btn-bg-color) !important;
-}
-
 button:hover {
   border: 1px solid;
   border-color: #646cff;

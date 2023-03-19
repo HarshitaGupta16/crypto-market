@@ -14,7 +14,12 @@ const ToggleTheme = () => {
           <IconButton
             onClick={() => setTheme("light-theme")}
             aria-label="Switch to light mode"
-            style={{ height: 30, width: "30px" }}
+            style={{
+              height: 30,
+              width: "30px",
+              backgroundColor: "turquoise",
+              color: "white",
+            }}
           >
             <LightModeIcon />
           </IconButton>
@@ -24,7 +29,12 @@ const ToggleTheme = () => {
           <IconButton
             onClick={() => setTheme("dark-theme")}
             aria-label="Switch to dark mode"
-            style={{ height: 30, width: "30px" }}
+            style={{
+              height: 30,
+              width: "30px",
+              backgroundColor: "#1a237e",
+              color: "white",
+            }}
           >
             <DarkModeIcon />
           </IconButton>
