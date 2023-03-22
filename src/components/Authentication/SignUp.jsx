@@ -40,6 +40,13 @@ const SignUp = () => {
         type: "error",
       });
     }
+    if (!email || !password || !confirmPassword) {
+      setAlert({
+        open: true,
+        message: "Please fill all the fields",
+        type: "error",
+      });
+    }
     try {
       const result = await createUserWithEmailAndPassword(
         auth,

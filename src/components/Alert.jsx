@@ -3,13 +3,6 @@ import React from "react";
 import { CryptoState } from "../contexts/CryptoContext";
 import MuiAlert from "@mui/material/Alert";
 
-const alertStyle = {
-  "&.MuiSnackbar-root": {
-    display: "flex",
-    justifyContent: "center",
-  },
-};
-
 const Alert = () => {
   const { alert, setAlert } = CryptoState();
   const handleClose = (event, reason) => {
@@ -23,7 +16,10 @@ const Alert = () => {
       open={alert.open}
       autoHideDuration={3000}
       onClose={handleClose}
-      style={alertStyle}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
     >
       <MuiAlert
         onClose={handleClose}
