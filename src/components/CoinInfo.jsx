@@ -14,7 +14,7 @@ import axios from "axios";
 import { HistoricalData } from "../config/api";
 import { CryptoState } from "../contexts/CryptoContext";
 import classes from "./CoinInfo.module.css";
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { ThemeState } from "../contexts/ThemeContext";
 import { ChartDays } from "../config/data";
 import SelectButton from "./common/SelectButton";
@@ -33,7 +33,6 @@ const CoinInfo = ({ coin }) => {
   const { currency } = CryptoState();
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
-  //   const [selected, setSelected] = useState(false);
   const { theme } = ThemeState();
 
   const fetchHistoricalData = async () => {

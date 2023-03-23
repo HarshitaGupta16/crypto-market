@@ -13,9 +13,10 @@ import { CryptoState } from "../../contexts/CryptoContext";
 import { ThemeState } from "../../contexts/ThemeContext";
 import { Link } from "react-router-dom";
 import AuthModal from "../Authentication/AuthModal";
+import UserSidebar from "../Authentication/UserSidebar";
 
 const Header = () => {
-  const { currency, setCurrency } = CryptoState();
+  const { currency, setCurrency, user } = CryptoState();
   const { theme } = ThemeState();
 
   return (
@@ -61,7 +62,7 @@ const Header = () => {
               <MenuItem value="USD">USD</MenuItem>
             </Select>
             <ToggleTheme />
-            <AuthModal />
+            {user ? <UserSidebar /> : <AuthModal />}
           </div>
         </Container>
       </Toolbar>

@@ -30,7 +30,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState();
 
   const { theme } = ThemeState();
-  const { alert, setAlert } = CryptoState();
+  const { setAlert } = CryptoState();
 
   const handleSubmit = async ({ handleClose }) => {
     if (password !== confirmPassword) {

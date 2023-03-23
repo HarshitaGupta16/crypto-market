@@ -29,7 +29,7 @@ const Login = ({ handleClose }) => {
   const [password, setPassword] = useState();
 
   const { theme } = ThemeState();
-  const { alert, setAlert } = CryptoState();
+  const { setAlert } = CryptoState();
 
   const handleSubmit = async () => {
     if (!email || !password) {
