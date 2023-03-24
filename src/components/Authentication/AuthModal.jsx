@@ -5,6 +5,10 @@ import SelectButton from "../common/SelectButton";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import GoogleButton from "react-google-button";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebase";
+import { CryptoState } from "../../contexts/CryptoContext";
 
 const style = {
   position: "absolute",
@@ -28,14 +32,47 @@ const tabStyle = {
   },
 };
 
+const google = {
+  display: "flex",
+  padding: 24,
+  paddingTop: 0,
+  flexDirection: "column",
+  textAlign: "center",
+  gap: 20,
+  fontSize: 20,
+};
+
 export default function AuthModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(0);
 
+  const { setAlert } = CryptoState();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: `Sign Up successfull. Welcome ${res.user.email}`,
+          type: "success",
+        });
+        handleClose();
+      })
+      .catch((error) => {
+        setAlert({
+          open: true,
+          message: error.message,
+          type: "error",
+        });
+      });
   };
 
   return (
@@ -76,6 +113,13 @@ export default function AuthModal() {
             </Tabs>
             {value === 0 && <Login handleClose={handleClose} />}
             {value === 1 && <SignUp handleClose={handleClose} />}
+            <Box style={google}>
+              <span>OR</span>
+              <GoogleButton
+                style={{ width: "100%", outline: "none" }}
+                onClick={signInWithGoogle}
+              />
+            </Box>
           </AppBar>
           {/* </Box> */}
         </Box>
