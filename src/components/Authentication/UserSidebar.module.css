@@ -47,3 +47,13 @@
   overflow-y: auto;
   margin-bottom: 20px;
 }
+
+.coin {
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-items: 0 0 3px black;
+}

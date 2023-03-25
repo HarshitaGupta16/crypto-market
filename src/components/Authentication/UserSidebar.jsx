@@ -6,15 +6,18 @@ import { Avatar, IconButton } from "@mui/material";
 import { ThemeState } from "../../contexts/ThemeContext";
 import classes from "./UserSidebar.module.css";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import CloseIcon from "@mui/icons-material/Close";
+import { NumberWithCommas } from "../Banner/Carousel";
+import { AiFillDelete } from "react-icons/ai";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function UserSidebar() {
   const [state, setState] = React.useState({
     right: false,
   });
 
-  const { user, setAlert } = CryptoState();
+  const { user, setAlert, watchlist, coinsList, symbol } = CryptoState();
   const { theme } = ThemeState();
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -38,6 +41,34 @@ export default function UserSidebar() {
 
     toggleDrawer();
   };
+
+  const handleRemoveCoinFromWatchlist = async (coin) => {
+    const coinRef = doc(db, "watchlist", user.uid);
+
+    try {
+      await setDoc(
+        coinRef,
+        {
+          coins: watchlist.filter((watch) => watch !== coin?.id),
+        },
+        {
+          merge: "true",
+        }
+      );
+      setAlert({
+        open: true,
+        message: `${coin.name} removed from the watchlist !`,
+        type: "success",
+      });
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: error.message,
+        type: "error",
+      });
+    }
+  };
+
   return (
     <div>
       {["right"].map((anchor) => (
@@ -108,9 +139,48 @@ export default function UserSidebar() {
                   {user.displayName || user.email}
                 </span>
                 <div className={classes.watchlist}>
-                  <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
+                  <span
+                    style={{
+                      fontSize: 15,
+                      textShadow: "0 0 5px black",
+                      color:
+                        theme === "dark-theme"
+                          ? "#242424"
+                          : "rgba(255, 255, 255, 0.87)",
+                    }}
+                  >
                     Watchlist
                   </span>
+                  {coinsList?.map((coin) => {
+                    if (watchlist.includes(coin.id)) {
+                      return (
+                        <div
+                          className={classes.coin}
+                          style={{
+                            backgroundColor:
+                              theme === "dark-theme" ? "turquoise" : "#1a237e",
+                            color:
+                              theme === "dark-theme"
+                                ? "#242424"
+                                : "rgba(255, 255, 255, 0.87)",
+                          }}
+                        >
+                          <span>{coin.name}</span>
+                          <span style={{ display: "flex", gap: 8 }}>
+                            {symbol}
+                            {NumberWithCommas(coin.current_price.toFixed(2))}
+                            <AiFillDelete
+                              style={{ cursor: "pointer", marginTop: "4px" }}
+                              fontSize="16"
+                              onClick={() =>
+                                handleRemoveCoinFromWatchlist(coin)
+                              }
+                            />
+                          </span>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
               </div>
               <Button
@@ -120,6 +190,10 @@ export default function UserSidebar() {
                 style={{
                   backgroundColor:
                     theme === "dark-theme" ? "turquoise" : "#1a237e",
+                  color:
+                    theme === "dark-theme"
+                      ? "#242424"
+                      : "rgba(255, 255, 255, 0.87)",
                 }}
               >
                 Logout

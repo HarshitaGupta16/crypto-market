@@ -66,6 +66,10 @@ const CryptoContext = ({ children }) => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    fetchCoinsList();
+  }, [currency]);
+
   return (
     <Crypto.Provider
       value={{
