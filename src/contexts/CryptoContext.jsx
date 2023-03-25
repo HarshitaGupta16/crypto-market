@@ -1,8 +1,9 @@
 import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, onSnapshot } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { CoinsList } from "../config/api";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 const Crypto = createContext();
 
@@ -17,6 +18,8 @@ const CryptoContext = ({ children }) => {
     message: "",
     type: "success",
   });
+  const [open, setOpen] = useState(false);
+  const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
     if (currency === "INR") {
@@ -37,6 +40,25 @@ const CryptoContext = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      const coinRef = doc(db, "watchlist", user.uid);
+      // onSnapshot checks if our database is updated or not, here checking for coinRef database
+      const unsubscribe = onSnapshot(coinRef, (coin) => {
+        if (coin.exists()) {
+          console.log(coin.data());
+          // data() has all all of the data inside of user.uid
+          setWatchlist(coin.data().coins);
+        } else {
+          console.log("No items in the watchlist");
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [user]);
+
   const fetchCoinsList = async () => {
     setLoading(true);
     const { data } = await axios.get(CoinsList(currency));
@@ -56,6 +78,9 @@ const CryptoContext = ({ children }) => {
         alert,
         setAlert,
         user,
+        open,
+        setOpen,
+        watchlist,
       }}
     >
       {children}

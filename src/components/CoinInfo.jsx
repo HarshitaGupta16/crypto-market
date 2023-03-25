@@ -102,6 +102,7 @@ const CoinInfo = ({ coin }) => {
                 onClick={() => setDays(button.days)}
                 selected={button.days === days}
                 btnClass={classes.chartDaysBtn}
+                key={button.days}
               >
                 {button.label}
               </SelectButton>

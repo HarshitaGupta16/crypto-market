@@ -43,12 +43,11 @@ const google = {
 };
 
 export default function AuthModal() {
-  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(0);
 
-  const { setAlert } = CryptoState();
+  const { setAlert, open, setOpen } = CryptoState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
